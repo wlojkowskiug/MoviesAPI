@@ -3,10 +3,12 @@ const app = express();
 const cors = require('cors');
 const client = require('./config/psqlClient');
 const movies = require('./routes/movies');
+const persons = require('./routes/persons');
 
 app.use(express.json());
 app.use(cors());
 app.use("/api/movies", movies);
+app.use("/api/persons", persons);
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
