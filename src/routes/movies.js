@@ -108,9 +108,9 @@ router.post('/:id/actors', async (req, res) => {
     const person = req.body;
     const id = req.params.id;
 
-    const person = await client.query("SELECT * FROM person WHERE id = $1", [ person.id ]);
+    const existingPerson = await client.query("SELECT * FROM person WHERE id = $1", [ person.id ]);
 
-    if(!person.rows[0]) {
+    if(!existingPerson.rows[0]) {
         return res.status(500).send(messages.ELEMENT_NOT_EXIST);
     }
 
