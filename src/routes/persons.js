@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
     const personToAdd = req.body;
 
     const insertedPersonRows = await client.query(
-        "INSERT INTO movie (first_name, last_name, birth_date, nationality) VALUES ($1, $2, $3, $4) RETURNING *",
+        "INSERT INTO person (first_name, last_name, birth_date, nationality) VALUES ($1, $2, $3, $4) RETURNING *",
         [personToAdd.first_name, personToAdd.last_name, personToAdd.birth_date, personToAdd.nationality]
       );
 
