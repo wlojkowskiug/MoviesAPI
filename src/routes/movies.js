@@ -102,7 +102,11 @@ router.patch('/:id/director', async (req, res) => {
 });
 
 
-
+router.get('/:id/actors', async (req, res) => {
+    const id = req.params.id;
+    const actors = await client.query("SELECT * FROM actor WHERE movie_id = $1", [ id ]);
+    return res.send(actors.rows);
+});
 
 router.post('/:id/actors', async (req, res) => {
     const person = req.body;
