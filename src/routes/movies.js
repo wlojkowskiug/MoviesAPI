@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
         return res.status(500).send(messages.TITLE_DUPLICATE);
     }
 
-    if(movie.director) {
+    if(movieToAdd.director) {
         const director = await client.query("SELECT * FROM person WHERE id = $1", [ movieToAdd.director.id ]);
 
         if(!director.rows[0]) {
@@ -64,7 +64,7 @@ router.put('/:id', async (req, res) => {
     const movieToAdd = req.body;
     const id = req.params.id;
 
-    if(movie.director) {
+    if(movieToAdd.director) {
         const director = await client.query("SELECT * FROM person WHERE id = $1", [ movieToAdd.director.id ]);
 
         if(!director.rows[0]) {
@@ -86,7 +86,7 @@ router.patch('/:id/director', async (req, res) => {
     const id = req.params.id;
 
     if(directorToSet) {
-        const director = await client.query("SELECT * FROM person WHERE id = $1", [ movieToAdd.director.id ]);
+        const director = await client.query("SELECT * FROM person WHERE id = $1", [ directorToSet.id ]);
 
         if(!director.rows[0]) {
             return res.status(500).send(messages.DIRECTOR_NOT_EXISTS);
