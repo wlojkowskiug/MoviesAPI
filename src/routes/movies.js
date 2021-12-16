@@ -98,7 +98,7 @@ router.patch('/:id/director', async (req, res) => {
         [directorToSet ? directorToSet.id : null, id]
     );
     
-    return result.rowCount > 0 ? res.send(movieToAdd) : res.sendStatus(400);
+    return result.rowCount > 0 ? res.sendStatus(200) : res.sendStatus(400);
 });
 
 
