@@ -118,7 +118,7 @@ router.post('/:id/actors', async (req, res) => {
         return res.status(500).send(messages.ELEMENT_NOT_EXIST);
     }
 
-    const result = await client.query(`INSERT INTO actor (movie_id, person_id) VALUES  VALUES ($1, $2) RETURNING *`,
+    const result = await client.query(`INSERT INTO actor (movie_id, person_id) VALUES ($1, $2) RETURNING *`,
         [id, person.id]
     );
     
