@@ -132,7 +132,7 @@ router.delete('/:id/actors/:idPerson', async (req, res) => {
         [id, idPerson]
     );
     
-    return response.rowCount > 0 ? res.sendStatus(200) : res.sendStatus(400); 
+    return result.rowCount > 0 ? res.sendStatus(200) : res.sendStatus(400); 
 });
 
 
