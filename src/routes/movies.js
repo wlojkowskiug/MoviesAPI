@@ -84,8 +84,7 @@ router.put('/:id', async (req, res) => {
 router.patch('/:id/director', async (req, res) => {
     const directorToSet = req.body;
     const id = req.params.id;
-
-    if(directorToSet) {
+    if(directorToSet && Object.keys(directorToSet).length !== 0) {
         const director = await client.query("SELECT * FROM person WHERE id = $1", [ directorToSet.id ]);
 
         if(!director.rows[0]) {
@@ -95,7 +94,7 @@ router.patch('/:id/director', async (req, res) => {
     }
 
     const result = await client.query(`UPDATE movie SET director_id = $1 WHERE id = $2`,
-        [directorToSet ? directorToSet.id : null, id]
+        [directorToSet && Object.keys(directorToSet).length !== 0 ? directorToSet.id : null, id]
     );
     
     return result.rowCount > 0 ? res.sendStatus(200) : res.sendStatus(400);
